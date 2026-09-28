@@ -1,0 +1,79 @@
+@CoreCRM.Api_HostAddress = http://localhost:5155
+@EntityDefRoute = entity-definitions
+@defId = 6a2d6675-8dd1-4548-aa4f-3b78ee52aa0d
+
+
+GET {{CoreCRM.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
+
+### Create Customer entity definition
+POST {{CoreCRM.Api_HostAddress}}/{{EntityDefRoute}}
+Content-Type: application/json
+
+{
+  "name": "Customer",
+  "displayName": "Müşteri",
+  "fields": [
+    { "name": "FirstName", "label": "Ad", "type": 0, "isRequired": true },
+    { "name": "Age", "label": "Yaş", "type": 1, "isRequired": false }
+  ]
+}
+
+### Create Customer entity definition (text)
+POST {{CoreCRM.Api_HostAddress}}/{{EntityDefRoute}}
+Content-Type: application/json
+
+{
+  "name": "Customer2",
+  "displayName": "Müşteri2",
+  "fields": [
+    { "name": "FirstName", "label": "Ad", "type": "Text", "isRequired": true }
+  ]
+}
+
+
+### Create record to entity definition
+POST {{CoreCRM.Api_HostAddress}}/{{EntityDefRoute}}/{{defId}}/records
+Content-Type: application/json
+
+{
+  "values": {
+    "FirstName": "Tahsin",
+    "Age": 35
+  }
+}
+
+
+### Create record to entity definition (validation test)
+POST {{CoreCRM.Api_HostAddress}}/{{EntityDefRoute}}/{{defId}}/records
+Content-Type: application/json
+
+{
+  "values": {
+    "Age": 35
+  }
+}
+
+
+### Update Customer2 entity definitions
+POST {{CoreCRM.Api_HostAddress}}/{{EntityDefRoute}}/{{defId}}/fields
+Content-Type: application/json
+
+{ 
+  "name": "City", "label": "Şehir", "type": "Text", "isRequired": false 
+}
+
+### Delete customer definition
+DELETE https://localhost:7134/entity-definitions/6a2d6675-8dd1-4548-aa4f-3b78ee52aa0d
+  
+### Delete entity definition
+DELETE {{CoreCRM.Api_HostAddress}}/{{EntityDefRoute}}/{{defId}}
+
+
+### GetById Customer entity definition (number definitions)
+GET {{CoreCRM.Api_HostAddress}}/{{EntityDefRoute}}/6a2d6675-8dd1-4548-aa4f-3b78ee52aa0d
+
+### GetById Customer entity definition (text definitions)
+GET {{CoreCRM.Api_HostAddress}}/{{EntityDefRoute}}/55c4241c-c335-45ee-bf5c-22ad89cc8cfc

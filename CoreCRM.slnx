@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="CoreCRM.Api/CoreCRM.Api.csproj" />
+  <Project Path="CoreCRM.Domain/CoreCRM.Domain.csproj" />
+  <Project Path="CoreCRM.Infrastructure/CoreCRM.Infrastructure.csproj" />
+  <Project Path="CoreCRM.Tests/CoreCRM.Tests.csproj" />
+</Solution>
